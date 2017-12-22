@@ -32,10 +32,29 @@
 		</div>
 	</div>
 
- <!-- <script type="text/javascript"> //reserveButton //
-    $("#tablesButton").on("click", function() {
-      var searchedCharacter = $("#character-search").val().trim();
+  <script type="text/javascript"> //reserveButton //
+    $("#tableSubmit").on("click", function() {
+      //var  = $("#").val().trim();
 
+      // Using a RegEx Pattern to remove spaces from searchedCharacter
+      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+      //searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+      $.get("/" + searchedCharacter, function(data) {
+        console.log(data);
+        if (tableRes) {
+          $("#stats").show();
+          $("#name").text(tableRes.name);
+          $("#role").text(data.phoneNumber);
+          $("#age").text(data.email);
+          $("#force-points").text(data.uniqueId);
+        }
+        else {
+          $("#name").text("The force is not strong with this one. Your character was not found.");
+          $("#stats").hide();
+        }
+      });
+    });
       // Using a RegEx Pattern to remove spaces from searchedCharacter
       // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
       // searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
@@ -54,5 +73,5 @@
       //     $("#stats").hide();
       //   }
       // });
-</script> -->
+</script> 
 </body>
