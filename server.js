@@ -62,15 +62,14 @@ var waitList = [
 	  // req.body hosts is equal to the JSON post sent from the user
 	  // This works because of our body-parser middleware
   		var newreservation = req.body;
-	  // Using a RegEx Pattern to remove spaces from newCharacter
-	  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-	  	newreservation.routeName = newreservation.name.replace(/\s+/g, "").toLowerCase();
-
+	  	
   		console.log(newreservation);
 
+  		if( tableRes.length <= 5 ){
   		tableRes.push(newreservation);
-
+  		} else {
   		res.json(newreservation);
+		}
 	});
 
 // Starts the server to begin listening
@@ -78,4 +77,3 @@ var waitList = [
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
-  
